@@ -1,0 +1,27 @@
+# Entornos y caché de Python
+.venv*/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Datos pesados o reproducibles con los scripts
+data/raw/html/
+data/raw/noticias.jsonl
+data/raw/noticias.csv
+data/interim/
+data/processed/*.parquet
+data/llm/*.jsonl
+
+# Pesos del modelo: se publican en Hugging Face Hub, no en git
+modelos/
+
+# Varios
+logs/
+.DS_Store
+
+# Archivos de macOS en cualquier carpeta
+**/.DS_Store
+
+# Plan B: datos filtrados y clasificador, reproducibles con src/preparar_llm_distintivo.py
+data/llm-distintivo/*.jsonl
+data/llm-distintivo/clasificador.joblib

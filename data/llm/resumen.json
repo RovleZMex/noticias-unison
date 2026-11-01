@@ -1,0 +1,73 @@
+{
+  "2013": {
+    "train": 1852,
+    "valid": 20,
+    "test": 15
+  },
+  "2014": {
+    "train": 2091,
+    "valid": 20,
+    "test": 15
+  },
+  "2015": {
+    "train": 2314,
+    "valid": 20,
+    "test": 15
+  },
+  "2016": {
+    "train": 2275,
+    "valid": 20,
+    "test": 15
+  },
+  "2017": {
+    "train": 1996,
+    "valid": 20,
+    "test": 15
+  },
+  "2018": {
+    "train": 2006,
+    "valid": 20,
+    "test": 15
+  },
+  "2019": {
+    "train": 1646,
+    "valid": 20,
+    "test": 15
+  },
+  "2020": {
+    "train": 906,
+    "valid": 20,
+    "test": 15
+  },
+  "2021": {
+    "train": 1316,
+    "valid": 20,
+    "test": 15
+  },
+  "2022": {
+    "train": 1554,
+    "valid": 20,
+    "test": 15
+  },
+  "2023": {
+    "train": 1600,
+    "valid": 20,
+    "test": 15
+  },
+  "2024": {
+    "train": 1411,
+    "valid": 20,
+    "test": 15
+  },
+  "2025": {
+    "train": 1263,
+    "valid": 20,
+    "test": 15
+  },
+  "2026": {
+    "train": 898,
+    "valid": 20,
+    "test": 15
+  },
+  "notas_con_nombres_reemplazados": 0.976
+}

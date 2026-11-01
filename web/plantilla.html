@@ -1,0 +1,882 @@
+<title>La Unison cambió su forma de escribir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Libre+Franklin:wght@400;500;600;700&display=swap">
+<style>
+/* Concepto: una sola columna editorial sobre tinta oscura; las gráficas se quedan fijas y el texto pasa por encima.
+   El amarillo de marcatexto se reserva para el lenguaje inclusivo: es lo único que «se subraya» en toda la historia. */
+:root {
+  color-scheme: dark;
+  --tinta: #0D1319;
+  --tinta-2: #131B23;
+  --papel: #ECE6DA;
+  --papel-2: #B9B3A8;
+  --gris: #7E8894;
+  --linea: #26313C;
+  --apagado: #1F2833;
+  --punto: #46525F;
+  --marca: #F2D15C;
+  --marca-tinta: #1A1608;
+  --sube: #E6A06E;
+  --baja: #82AACB;
+  --covid: #D9825B;
+  --era-1: #59636E;
+  --era-2: #4E7396;
+  --era-3: #7D6A99;
+  --era-4: #3E8C83;
+  --tarjeta: rgba(19, 27, 35, 0.92);
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --sans: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --medida: 38rem;
+}
+* { box-sizing: border-box; }
+html { background: var(--tinta); }
+body {
+  background: var(--tinta); color: var(--papel); font-family: var(--serif); font-size: 1.25rem; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; text-decoration-color: var(--gris); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--marca); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--marca); outline-offset: 3px; border-radius: 2px; }
+.gutter { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.columna { max-width: var(--medida); margin-inline: auto; }
+.etiqueta { font-family: var(--sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gris); }
+h1, h2 { font-family: var(--serif); font-weight: 400; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); line-height: 1.08; margin: 0; }
+p { margin: 0; }
+.prosa { display: flex; flex-direction: column; gap: 1.2em; }
+.marca { background: linear-gradient(transparent 12%, var(--marca) 12%, var(--marca) 88%, transparent 88%); color: var(--marca-tinta); padding: 0 0.12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.cifra { font-variant-numeric: tabular-nums; }
+
+/* ---------- Portada ---------- */
+.portada { padding-block: clamp(4rem, 12vh, 8rem) 3rem; display: flex; flex-direction: column; gap: 2.4rem; }
+.portada h1 { font-size: clamp(3rem, 9.5vw, 7.6rem); line-height: 0.95; margin: 0; max-width: 11ch; font-weight: 300; }
+.portada h1 em { font-style: italic; font-weight: 400; }
+.entradilla { font-size: clamp(1.25rem, 2.2vw, 1.6rem); line-height: 1.45; color: var(--papel-2); max-width: 34rem; }
+.firma { font-family: var(--sans); font-size: 0.85rem; color: var(--gris); }
+.ancho { max-width: 68rem; margin-inline: auto; width: 100%; }
+
+/* La frase que cambia */
+.frase-caja { border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); padding-block: 2.2rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.frase-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.frase-anio { font-family: var(--sans); font-weight: 700; font-size: clamp(2.6rem, 6vw, 4.2rem); line-height: 1; font-variant-numeric: tabular-nums; color: var(--papel); transition: color 0.6s; }
+.frase[data-estado="2026"] ~ .frase-pie .frase-anio, .frase-caja[data-estado="2026"] .frase-anio { color: var(--marca); }
+.frase { font-size: clamp(1.6rem, 3.6vw, 2.6rem); line-height: 1.3; font-weight: 300; min-height: 3.9em; }
+.frase .b { display: none; }
+.frase-caja[data-estado="2026"] .frase .a { display: none; }
+.frase-caja[data-estado="2026"] .frase .b { display: inline; animation: aparece 0.7s ease both; }
+.frase-caja[data-estado="tachado"] .frase .s1 .a { text-decoration: line-through; text-decoration-color: var(--marca); text-decoration-thickness: 3px; }
+.frase .s1 .b { background: linear-gradient(transparent 10%, var(--marca) 10%, var(--marca) 90%, transparent 90%) no-repeat left / 0% 100%; color: var(--papel); padding: 0 0.1em; }
+.frase-caja[data-estado="2026"] .frase .s1 .b { animation: subraya 0.9s 0.2s cubic-bezier(.6,0,.2,1) forwards; }
+@keyframes subraya { to { background-size: 100% 100%; color: var(--marca-tinta); } }
+@keyframes aparece { from { opacity: 0; filter: blur(4px); } to { opacity: 1; filter: blur(0); } }
+.frase-fuente { font-family: var(--sans); font-size: 0.85rem; color: var(--gris); max-width: 40rem; }
+.boton { font-family: var(--sans); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--papel); background: none; border: 1px solid var(--linea); padding: 0.55rem 0.9rem; border-radius: 999px; cursor: pointer; }
+.boton:hover { border-color: var(--marca); }
+.gancho { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 2rem; padding-top: 1rem; }
+.gancho div { display: flex; flex-direction: column; gap: 0.3rem; }
+.gancho .num { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 4.4rem); line-height: 1; font-weight: 300; }
+.gancho .num.hoy { color: var(--marca); font-weight: 400; }
+.gancho p:last-child { font-family: var(--sans); font-size: 0.95rem; color: var(--papel-2); line-height: 1.45; }
+.bajar { font-family: var(--sans); font-size: 0.85rem; color: var(--gris); display: flex; align-items: center; gap: 0.6rem; }
+.bajar::after { content: ""; width: 1px; height: 2.4rem; background: linear-gradient(var(--gris), transparent); animation: gota 1.8s ease-in-out infinite; }
+@keyframes gota { 0%, 100% { transform: translateY(-4px); opacity: 0.4; } 50% { transform: translateY(6px); opacity: 1; } }
+
+/* ---------- Texto entre gráficas ---------- */
+.capitulo { padding-block: clamp(5rem, 14vh, 9rem) clamp(2rem, 6vh, 4rem); display: flex; flex-direction: column; gap: 1.6rem; }
+.capitulo .etiqueta { color: var(--marca); }
+
+/* ---------- Scrollytelling ---------- */
+.scrolly { position: relative; }
+.escenario { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; align-items: stretch; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.lienzo { position: relative; flex: 1; min-width: 0; margin-left: calc(min(26rem, 40vw) + 2rem); padding-block: 4vh; display: flex; flex-direction: column; justify-content: center; }
+.lienzo canvas, .lienzo svg { display: block; width: 100%; }
+.pasos { position: relative; margin-top: -100vh; margin-top: -100svh; pointer-events: none; }
+.paso { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.paso:last-child { min-height: 120vh; min-height: 120svh; }
+.tarjeta { pointer-events: auto; width: min(26rem, 40vw); background: var(--tarjeta); border: 1px solid var(--linea); padding: 1.5rem 1.6rem; border-radius: 4px; font-size: 1.1rem; line-height: 1.55; display: flex; flex-direction: column; gap: 0.8rem; }
+.tarjeta .etiqueta { font-size: 0.72rem; }
+.tarjeta b { font-weight: 600; }
+.clave { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--sans); font-size: 0.85rem; color: var(--papel-2); }
+.clave i { width: 0.7rem; height: 0.7rem; border-radius: 1px; display: inline-block; }
+.leyenda { display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; }
+
+/* Palabras */
+.palabras { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(0.8rem, 2vw, 2rem); align-content: center; height: 100%; }
+.era { display: flex; flex-direction: column; gap: 0.3rem; opacity: 0.22; transition: opacity 0.6s, transform 0.6s; min-width: 0; }
+.era.activa { opacity: 1; }
+.era h3 { margin: 0 0 0.6rem; font-family: var(--sans); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gris); border-top: 3px solid currentColor; padding-top: 0.6rem; }
+.era span { font-family: var(--serif); line-height: 1.12; hyphens: auto; -webkit-hyphens: auto; transition: transform 0.6s cubic-bezier(.2,.7,.2,1), color 0.6s; transform-origin: left center; }
+.era.activa span { color: var(--papel); }
+.era span.marca, .era.activa span.marca { color: var(--marca-tinta); font-weight: 500; }
+.era:not(.activa) span { transform: scale(0.94); }
+
+/* Verbos: sección con scrub */
+.scrub { position: relative; height: 340vh; height: 340svh; }
+.scrub .escenario { flex-direction: column; justify-content: center; gap: 2rem; }
+.verbos-cabeza { display: grid; grid-template-columns: auto 1fr 1fr; gap: clamp(1rem, 4vw, 3rem); align-items: end; max-width: 68rem; width: 100%; margin-inline: auto; }
+.verbos-anio { font-family: var(--sans); font-weight: 700; font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.verbo { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.verbo .palabra { font-family: var(--serif); font-style: italic; line-height: 1; font-size: 3rem; transition: font-size 0.15s linear; white-space: nowrap; }
+.verbo .pct { font-family: var(--sans); font-size: 0.95rem; color: var(--papel-2); font-variant-numeric: tabular-nums; }
+#verbo-destaco .palabra { color: var(--sube); }
+.verbos-grafica { max-width: 68rem; width: 100%; margin-inline: auto; }
+.verbos-texto { max-width: 68rem; width: 100%; margin-inline: auto; font-family: var(--sans); font-size: 0.95rem; color: var(--papel-2); min-height: 3em; }
+
+/* SVG */
+svg text { font-family: var(--sans); fill: var(--papel-2); font-size: 13px; }
+svg .eje line, svg .eje path { stroke: var(--linea); }
+svg .eje text { fill: var(--gris); font-size: 12px; }
+
+/* Silencio */
+.silencio { padding-block: clamp(6rem, 18vh, 12rem); display: flex; flex-direction: column; gap: 3rem; }
+.silencio h2 { font-size: clamp(2.6rem, 7vw, 5.4rem); font-weight: 300; }
+.cero { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 2.5rem; }
+.cero .num { font-size: clamp(4rem, 10vw, 7rem); line-height: 1; font-weight: 300; color: var(--marca); }
+.cero p:last-child { font-family: var(--sans); font-size: 1rem; color: var(--papel-2); line-height: 1.5; max-width: 26rem; }
+.barritas { display: flex; align-items: flex-end; gap: 6px; height: 4rem; }
+.barritas div { flex: 1; background: var(--punto); min-height: 2px; position: relative; }
+.barritas-ejes { display: flex; justify-content: space-between; font-family: var(--sans); font-size: 0.75rem; color: var(--gris); }
+
+/* Idea central */
+.idea { padding-block: clamp(6rem, 16vh, 11rem); border-top: 1px solid var(--linea); }
+.idea p.grande { font-size: clamp(1.9rem, 4.2vw, 3.3rem); line-height: 1.15; font-weight: 300; text-wrap: balance; max-width: 26ch; }
+.idea .sub { font-size: 1.3rem; color: var(--papel-2); max-width: 36rem; margin-top: 2rem; line-height: 1.55; }
+
+/* Epílogo */
+.par { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 2rem; padding-block: 2rem 5rem; }
+.par figure { margin: 0; display: flex; flex-direction: column; gap: 0.8rem; border-top: 1px solid var(--linea); padding-top: 1.2rem; }
+.par blockquote { margin: 0; font-size: 1.4rem; line-height: 1.4; font-weight: 300; }
+.par figcaption { font-family: var(--sans); font-size: 0.85rem; color: var(--gris); }
+
+/* Método */
+.metodo { border-top: 1px solid var(--linea); padding-block: 4rem 6rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 2.5rem; font-family: var(--sans); font-size: 0.95rem; line-height: 1.6; color: var(--papel-2); }
+.metodo h3 { font-family: var(--sans); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--papel); margin: 0 0 0.8rem; }
+.metodo ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.metodo > div { min-width: 0; }
+
+@media (max-width: 820px) {
+  .lienzo { margin-left: 0; padding-block: 4vh 34vh; justify-content: flex-start; }
+  .paso { align-items: flex-end; padding-bottom: 6vh; }
+  .tarjeta { width: 100%; font-size: 1.02rem; padding: 1.1rem 1.2rem; }
+  .palabras { grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; padding-top: 2vh; }
+  .verbos-cabeza { grid-template-columns: 1fr 1fr; }
+  .verbos-anio { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+</style>
+
+<main lang="es">
+  <header class="portada gutter">
+    <div class="ancho" style="display:flex;flex-direction:column;gap:2.4rem">
+      <p class="etiqueta">Universidad de Sonora · 2013–2026</p>
+      <h1>La Unison cambió su forma de <em>escribir</em></h1>
+      <p class="entradilla">Analizamos las 23,643 notas que la Universidad de Sonora publicó sobre sí misma entre 2013 y 2026. Con cada rector, los temas cambiaron poco a poco. La manera de nombrar a la comunidad universitaria cambió de golpe en 2026, y ninguna nota lo explicó.</p>
+
+      <div class="frase-caja" id="frase-caja" data-estado="2013">
+        <div class="frase-meta">
+          <span class="frase-anio cifra" id="frase-anio">2013</span>
+          <button class="boton" id="frase-boton" type="button">Ver de nuevo</button>
+        </div>
+        <p class="frase" id="frase" aria-live="polite">Asimismo, invitó a <span class="swap s1"><span class="a">los</span><span class="b">las y los</span></span> estudiantes a aprovechar <span class="swap s2"><span class="a">los conocimientos y experiencias que durante cuatro días compartirán con ellos los conferencistas invitados.</span><span class="b">al máximo esta experiencia de formación e investigación.</span></span></p>
+        <p class="frase-fuente" id="frase-fuente">Dos frases del portal con trece años de diferencia.</p>
+      </div>
+
+      <div class="gancho" id="gancho"></div>
+    </div>
+  </header>
+
+  <section class="capitulo gutter">
+    <div class="columna prosa">
+      <h2>Catorce años, cuatro rectores</h2>
+      <p>El portal de noticias de la Unison es la forma en que la institución se presenta: eventos, investigación, cultura, deporte, ceremonias. Lo escribe un equipo pequeño: cinco firmas producen la mitad de las notas firmadas.</p>
+      <p>En estos años la universidad tuvo cuatro rectores: Heriberto Grijalva Monteverde, hasta 2017; Enrique Fernando Velázquez Contreras, de 2017 a 2021; María Rita Plancarte Martínez, la primera mujer al frente de la universidad, de 2021 a 2025, y Dena María Camarena Gómez, desde junio de 2025.</p>
+      <p>Si la voz del portal depende de quién dirige la universidad, debería cambiar con cada uno.</p>
+    </div>
+  </section>
+
+  <section class="scrolly" id="scrolly-puntos" data-grafica="puntos">
+    <div class="escenario"><div class="lienzo"><canvas id="lienzo-puntos" aria-label="Cada nota publicada entre 2013 y 2026 como un punto, ordenadas por mes"></canvas></div></div>
+    <div class="pasos">
+      <div class="paso" data-paso="0"><div class="tarjeta">
+        <p>Cada punto es una nota del portal y cada columna, un mes, de enero de 2013 a octubre de 2026.</p>
+        <p id="t-volumen">El portal pasó de unas 160 a 200 notas al mes entre 2013 y 2016 a unas 90 en 2026.</p>
+      </div></div>
+      <div class="paso" data-paso="1"><div class="tarjeta">
+        <p>Los colores marcan a los cuatro rectores. El inicio de cada uno es el primer día en que una nota lo llama «rector» o «rectora».</p>
+        <div class="leyenda" id="leyenda-eras"></div>
+      </div></div>
+      <div class="paso" data-paso="2"><div class="tarjeta">
+        <p>En naranja, las notas que mencionan la pandemia: <b id="t-covid">hasta 35% en 2021</b>. Después casi desaparecen.</p>
+        <p>En abril de 2020 el portal publicó solo <b id="t-abril">15</b> notas.</p>
+        <span class="clave"><i style="background:var(--covid)"></i>menciona la pandemia</span>
+      </div></div>
+      <div class="paso" data-paso="3"><div class="tarjeta">
+        <p id="t-rector">En azul, las notas que mencionan al rector o la rectora: 10.8% con Grijalva y 18.5% con Camarena.</p>
+        <p>En los titulares la proporción es mucho menor: cerca de 2 de cada 100 notas, en todos los periodos.</p>
+        <span class="clave"><i style="background:var(--baja)"></i>menciona al rector o la rectora</span>
+      </div></div>
+      <div class="paso" data-paso="4"><div class="tarjeta">
+        <p>En amarillo, las notas con lenguaje inclusivo: <span class="marca">«las y los»</span>, «niñas y niños», «estudiantado», «alumnado».</p>
+        <p id="t-inclusivo">Entre 2013 y 2025 la proporción sube despacio, de 5% a 20%. En 2026 llega a 47%.</p>
+        <p style="font-family:var(--sans);font-size:0.9rem;color:var(--papel-2)">Esta medida incluye palabras como «estudiantado»; la de la portada solo cuenta fórmulas como «las y los». Por eso las cifras son distintas.</p>
+        <span class="clave"><i style="background:var(--marca)"></i>usa lenguaje inclusivo</span>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="capitulo gutter">
+    <div class="columna prosa">
+      <h2>Las palabras de cada rectorado</h2>
+      <p>Para cada rectorado buscamos las palabras que se usan mucho más en esa etapa que en las otras tres. Quitamos los nombres de personas; si no, cada lista empezaría con el apellido del rector.</p>
+      <p>Si se excluyen las notas sobre la pandemia, las listas casi no cambian.</p>
+    </div>
+  </section>
+
+  <section class="scrolly" id="scrolly-palabras" data-grafica="palabras">
+    <div class="escenario"><div class="lienzo"><div class="palabras" id="palabras"></div></div></div>
+    <div class="pasos">
+      <div class="paso" data-paso="0"><div class="tarjeta">
+        <p class="etiqueta">Grijalva · 2013–2017</p>
+        <p>Radio, televisión, teatro y obra, y fórmulas de convocatoria como «se cita a las 10 horas». A los estudiantes se les llama «alumnos».</p>
+      </div></div>
+      <div class="paso" data-paso="1"><div class="tarjeta">
+        <p class="etiqueta">Velázquez · 2017–2021</p>
+        <p>Internacionalización, innovación, medio ambiente y, en el último año, la contingencia sanitaria.</p>
+      </div></div>
+      <div class="paso" data-paso="2"><div class="tarjeta">
+        <p class="etiqueta">Plancarte · 2021–2025</p>
+        <p>Pandemia, clases híbridas y el regreso a lo presencial. También aparecen «inclusivo» e «inclusión y equidad».</p>
+      </div></div>
+      <div class="paso" data-paso="3"><div class="tarjeta">
+        <p class="etiqueta">Camarena · desde 2025</p>
+        <p>Predominan verbos y sustantivos de intención: fortalecer, acompañamiento, propósito, reafirmar compromiso. Aparece <span class="marca">estudiantado</span>.</p>
+        <p style="font-family:var(--sans);font-size:0.9rem;color:var(--papel-2)">Con 16 meses de datos, es la lista menos estable.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="scrolly" id="scrolly-temas" data-grafica="temas">
+    <div class="escenario"><div class="lienzo"><svg id="svg-temas" role="img" aria-label="Peso de ocho temas en el primer y en el último rectorado"></svg></div></div>
+    <div class="pasos">
+      <div class="paso" data-paso="0"><div class="tarjeta">
+        <p>Otra forma de verlo: agrupamos automáticamente las notas en 20 temas. Estos son los ocho que más cambian entre el primer rectorado y el actual.</p>
+        <p>Cada punto compara el peso del tema con su promedio de 2013 a 2026: 1.36× significa 36% más de lo habitual. Aquí, con Grijalva.</p>
+      </div></div>
+      <div class="paso" data-paso="1"><div class="tarjeta">
+        <p>Con Camarena pesan más los congresos, la salud, la gestión, la investigación y las ceremonias. Bajan la cultura, los cursos y, sobre todo, la economía y la política nacional.</p>
+        <div class="leyenda"><span class="clave"><i style="background:var(--sube)"></i>sube</span><span class="clave"><i style="background:var(--baja)"></i>baja</span></div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="capitulo gutter">
+    <div class="columna prosa">
+      <h2>¿Cambia el vocabulario cuando llega un rector?</h2>
+      <p>Cada etapa tiene sus palabras. Falta saber si cambian de golpe cuando llega un rector o poco a poco.</p>
+      <p>Para cada trimestre medimos cuánto difiere su vocabulario del trimestre anterior: una barra alta es un cambio brusco. Comparamos siempre el mismo número de notas, para que los trimestres con pocas notas no parezcan cambiar más de lo que cambian.</p>
+    </div>
+  </section>
+
+  <section class="scrolly" id="scrolly-giro" data-grafica="giro">
+    <div class="escenario"><div class="lienzo"><svg id="svg-giro" role="img" aria-label="Cambio trimestral del vocabulario y del lenguaje inclusivo"></svg></div></div>
+    <div class="pasos">
+      <div class="paso" data-paso="0"><div class="tarjeta">
+        <p>Las líneas punteadas marcan la llegada de cada rector. En ellas no hay barras altas: el vocabulario cambia poco a poco.</p>
+        <p>Hay dos cambios fuera de lo normal: el regreso tras el cierre de 2020 y julio de 2026. Este último cae en el rectorado actual; con tan pocos meses no sabemos si es un cambio de fondo o un trimestre atípico.</p>
+      </div></div>
+      <div class="paso" data-paso="1"><div class="tarjeta">
+        <p>Abajo, la misma medida aplicada al lenguaje inclusivo. Durante años fluctúa sin patrón; en el primer semestre de 2026 da <span class="marca">los dos cambios más grandes</span> de toda la serie.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="scrolly" id="scrolly-firmas" data-grafica="firmas">
+    <div class="escenario"><div class="lienzo"><svg id="svg-firmas" role="img" aria-label="Porcentaje de notas con lenguaje inclusivo de cinco firmas en cuatro periodos"></svg></div></div>
+    <div class="pasos">
+      <div class="paso" data-paso="0"><div class="tarjeta">
+        <p>¿Fue el estilo de una persona? Estas son las cinco firmas con más notas. Hasta mediados de 2025 cada una sube a su ritmo, y una, Aleyda Gutiérrez, ya había despegado en el segundo semestre de ese año.</p>
+      </div></div>
+      <div class="paso" data-paso="1"><div class="tarjeta">
+        <p>En 2026 las cinco suben a la vez: entre 38% y 63% de sus notas, contra 12% a 45% en el semestre anterior.</p>
+        <p>Un cambio simultáneo en cinco firmas apunta a una pauta de redacción común más que al gusto de cada una.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="capitulo gutter">
+    <div class="columna prosa">
+      <h2>De «dijo» a «destacó»</h2>
+      <p>Al citar a alguien, quien redacta elige un verbo. «Dijo» es el más neutro; «destacó» subraya que lo dicho es importante. Contamos 108,224 verbos de cita en el portal. Estos dos son de los más usados, aunque no los únicos.</p>
+    </div>
+  </section>
+
+  <section class="scrub" id="scrub-verbos">
+    <div class="escenario">
+      <div class="verbos-cabeza">
+        <span class="verbos-anio" id="verbos-anio">2013</span>
+        <div class="verbo" id="verbo-dijo"><span class="palabra">dijo</span><span class="pct">de las citas</span></div>
+        <div class="verbo" id="verbo-destaco"><span class="palabra">destacó</span><span class="pct">de las citas</span></div>
+      </div>
+      <div class="verbos-grafica"><svg id="svg-verbos" role="img" aria-label="Porcentaje de citas con dijo y con destacó por año"></svg></div>
+      <p class="verbos-texto" id="verbos-texto">Hasta 2023, «dijo» aparece en 15% a 20% de las citas, el doble que «destacó».</p>
+    </div>
+  </section>
+
+  <section class="silencio gutter">
+    <div class="ancho" style="display:flex;flex-direction:column;gap:3rem">
+      <h2>Ninguna nota explica el cambio</h2>
+      <div class="cero">
+        <div>
+          <p class="num cifra">0</p>
+          <p>notas anuncian una guía de estilo o un cambio en la forma de redactar. Buscamos en las 23,643 notas expresiones como «lenguaje incluyente», «guía de estilo» o «manual de redacción».</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.8rem">
+          <div class="barritas" id="barritas" aria-label="Notas por año que mencionan el lenguaje incluyente"></div>
+          <div class="barritas-ejes"><span>2013</span><span id="barritas-max"></span><span>2026</span></div>
+          <p style="font-family:var(--sans);font-size:1rem;color:var(--papel-2);line-height:1.5" id="t-anuncios">Notas por año que mencionan el lenguaje incluyente: entre 0 y 7. Hablan de talleres, foros y otras actividades, no de la redacción del portal.</p>
+        </div>
+      </div>
+      <p style="font-family:var(--sans);font-size:0.95rem;color:var(--papel-2);max-width:40rem">El portal no es el único canal de la universidad. La decisión pudo comunicarse por otras vías, como circulares internas.</p>
+    </div>
+  </section>
+
+  <section class="idea gutter">
+    <div class="ancho">
+      <p class="grande">Con cada rector, los temas de la universidad cambiaron poco a poco. La forma de nombrar a su comunidad cambió de golpe en 2026, y en todas las firmas a la vez.</p>
+      <p class="sub">El cambio llegó unos seis meses después del último relevo en la rectoría. Los datos no dicen quién tomó la decisión ni por qué.</p>
+      <div class="par" id="par"></div>
+    </div>
+  </section>
+
+  <footer class="gutter">
+    <div class="ancho metodo">
+      <div>
+        <h3>Cómo se hizo</h3>
+        <ul>
+          <li>Descargamos todas las notas de unison.mx/nota publicadas desde 2013 (requests y BeautifulSoup): 23,830 notas únicas.</li>
+          <li>Excluimos avisos repetitivos y comunicados sin texto. Quedan 23,643.</li>
+          <li>Lematización, categorías gramaticales y entidades con spaCy (es_core_news_md); frases de dos palabras con NPMI.</li>
+          <li>Vocabulario por rectorado: log-odds con prior de Dirichlet (Monroe et al., 2008). Temas: NMF con 20 temas. Cambios entre trimestres: divergencia de Jensen-Shannon con muestras de 90 notas, menos el ruido de muestreo. Lenguaje inclusivo y verbos de cita: expresiones regulares.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Límites</h3>
+        <ul>
+          <li>Que dos cosas coincidan en el tiempo no prueba que una cause la otra. No sabemos si algún rector ordenó el cambio.</li>
+          <li>El rectorado actual lleva 16 meses (1,543 notas); sus cifras son las más frágiles.</li>
+          <li>La pandemia y la reestructura de 2023 coinciden con las transiciones.</li>
+          <li>Los indicadores cuentan las formas más frecuentes, no todas. Sirven para comparar en el tiempo, no como medida exacta.</li>
+          <li>Es una sola fuente: cómo se presenta la universidad, no todo lo que pasa en ella.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Fuente</h3>
+        <p>Portal de noticias de la Universidad de Sonora, <a href="https://www.unison.mx" target="_blank" rel="noopener">unison.mx</a>. Notas publicadas hasta el 28 de octubre de 2026.</p>
+        <p style="margin-top:1rem">Trabajo para la materia de Procesamiento de Lenguaje Natural de la maestría.</p>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+const D = /*__DATOS__*/null;
+const raiz = document.documentElement;
+const color = n => getComputedStyle(raiz).getPropertyValue(n).trim();
+const reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const fmt = n => n.toLocaleString("es-MX");
+const fmt1 = n => n.toLocaleString("es-MX", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const ERAS = ["--era-1", "--era-2", "--era-3", "--era-4"];
+
+// ---------- Fechas ----------
+const [y0, m0] = D.inicioMes.split("-").map(Number);
+const mesIdx = s => { const [y, m] = s.split("-").map(Number); return (y - y0) * 12 + (m - m0); };
+const nMeses = D.notas.length;
+const inicios = D.rectorados.map(r => mesIdx(r.inicio.slice(0, 7)));
+inicios[0] = 0;
+const eraDe = i => { let e = 0; inicios.forEach((s, j) => { if (i >= s) e = j; }); return e; };
+const fechaMes = i => new Date(y0, m0 - 1 + i, 15);
+
+// ---------- Cifras en el texto ----------
+(function textos() {
+  const anioDe = i => y0 + Math.floor((m0 - 1 + i) / 12);
+  document.getElementById("t-abril").textContent = fmt(D.notas[mesIdx("2020-04")].length);
+
+  // Notas por mes al inicio (2013–2016) y en 2026
+  const promMes = (a, b) => { const ms = D.notas.filter((s, i) => anioDe(i) >= a && anioDe(i) <= b); return ms.reduce((t, s) => t + s.length, 0) / ms.length; };
+  const ini = [2013, 2014, 2015, 2016].map(a => promMes(a, a)), redondea = v => Math.round(v / 10) * 10;
+  document.getElementById("t-volumen").textContent =
+    `El portal pasó de publicar entre ${redondea(Math.min(...ini))} y ${redondea(Math.max(...ini))} notas al mes de 2013 a 2016 a unas ${redondea(promMes(2026, 2026))} en 2026.`;
+
+  const porAnio = {};
+  D.notas.forEach((s, i) => { const y = anioDe(i); porAnio[y] = porAnio[y] || [0, 0]; for (const c of s) { porAnio[y][0]++; if (c & 4) porAnio[y][1]++; } });
+  const [anioCovid, [nC, cC]] = Object.entries(porAnio).sort((a, b) => b[1][1] / b[1][0] - a[1][1] / a[1][0])[0];
+  document.getElementById("t-covid").textContent = `${Math.round(cC / nC * 100)}% de las notas en ${anioCovid}`;
+
+  const pc = D.protagonismo.cuerpo;
+  document.getElementById("t-rector").textContent =
+    `En azul, las notas que mencionan al rector o la rectora: ${fmt1(pc[0])}% con Grijalva, alrededor de ${Math.round((pc[1] + pc[2]) / 2)}% con Velázquez y Plancarte, y ${fmt1(pc[3])}% con Camarena.`;
+
+  const ia = D.inclusivoAnual;
+  document.getElementById("t-inclusivo").textContent =
+    `Entre 2013 y 2025 la proporción sube despacio, de ${Math.round(ia["2013"])}% a ${Math.round(ia["2025"])}% de las notas. En 2026 llega a ${Math.round(ia["2026"])}%.`;
+
+  const aniosTodos = Object.keys(D.inclusivoAnual).map(Number);
+  const an = aniosTodos.map(y => D.anuncios[y] || 0), maxA = Math.max(...an);
+  const anioMax = aniosTodos[an.indexOf(maxA)];
+  document.getElementById("t-anuncios").textContent =
+    `Notas por año que mencionan el lenguaje incluyente: entre ${Math.min(...an)} y ${maxA} (el máximo, en ${anioMax}). Hablan de talleres, foros y otras actividades, no de la redacción del portal.`;
+  document.getElementById("barritas-max").textContent = `máximo: ${maxA} notas`;
+
+  const d13 = D.desdoblamientoAnual["2013"], d26 = D.desdoblamientoAnual["2026"];
+  document.getElementById("gancho").innerHTML = `
+    <div><p class="etiqueta">2013</p><p class="num cifra">1 de cada ${fmt(Math.round(100 / d13 / 100) * 100)}</p><p>notas usaba fórmulas como «las y los», «niñas y niños» o «académicas y académicos».</p></div>
+    <div><p class="etiqueta" style="color:var(--marca)">2026</p><p class="num hoy cifra">${Math.round(d26 / 10)} de cada 10</p><p>notas las usan.</p></div>`;
+
+  document.getElementById("leyenda-eras").innerHTML = D.rectorados.map((r, j) =>
+    `<span class="clave"><i style="background:var(${ERAS[j]})"></i>${r.nombre} · ${r.inicio.slice(0, 4)}${j < 3 ? "–" + D.rectorados[j + 1].inicio.slice(0, 4) : "–"}</span>`).join("");
+
+  document.getElementById("barritas").innerHTML = aniosTodos.map(y =>
+    `<div title="${y}: ${D.anuncios[y] || 0} notas" style="height:${((D.anuncios[y] || 0) / maxA) * 100}%"></div>`).join("");
+
+  const [e13, e26] = D.ejemplos;
+  const fechaLarga = s => new Date(s + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "long", year: "numeric" });
+  document.getElementById("par").innerHTML = [e13, e26].map((e, i) => `
+    <figure><blockquote>«${i ? e.frase.replace("las y los", '<span class="marca">las y los</span>') : e.frase}»</blockquote>
+    <figcaption>${fechaLarga(e.fecha)} · <a href="${e.url}" target="_blank" rel="noopener">${e.titulo}</a></figcaption></figure>`).join("");
+  document.getElementById("frase-fuente").innerHTML =
+    `Dos frases del portal con trece años de diferencia: <a href="${e13.url}" target="_blank" rel="noopener">${fechaLarga(e13.fecha)}</a> y <a href="${e26.url}" target="_blank" rel="noopener">${fechaLarga(e26.fecha)}</a>.`;
+})();
+
+// ---------- La frase que cambia ----------
+(function frase() {
+  const caja = document.getElementById("frase-caja"), anio = document.getElementById("frase-anio");
+  let timers = [];
+  function contar(desde, hasta, ms) {
+    const t0 = performance.now();
+    function paso(t) {
+      const p = Math.min(1, (t - t0) / ms);
+      anio.textContent = Math.round(desde + (hasta - desde) * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(paso);
+    }
+    requestAnimationFrame(paso);
+  }
+  function correr() {
+    timers.forEach(clearTimeout);
+    caja.dataset.estado = "2013"; anio.textContent = "2013";
+    if (reducido) { caja.dataset.estado = "2026"; anio.textContent = "2026"; return; }
+    // La frase de 2013 se queda unos segundos para que se alcance a leer antes del cambio
+    timers = [
+      setTimeout(() => { caja.dataset.estado = "tachado"; }, 4500),
+      setTimeout(() => { contar(2013, 2026, 900); }, 5100),
+      setTimeout(() => { caja.dataset.estado = "2026"; }, 6000),
+    ];
+  }
+  document.getElementById("frase-boton").addEventListener("click", correr);
+  // Arranca cuando la frase ya subió a la zona de lectura (70 % superior de la pantalla), no al cargar la
+  // página: al cargar, la frase se asoma abajo y todavía nadie la está leyendo
+  const visor = new IntersectionObserver(entradas => {
+    if (entradas.some(e => e.isIntersecting)) { visor.disconnect(); correr(); }
+  }, { threshold: 0.8, rootMargin: "0px 0px -30% 0px" });
+  visor.observe(caja);
+})();
+
+// ---------- Pasos: qué paso está activo en cada sección ----------
+const graficas = {};
+function observarPasos() {
+  // El paso activo es la última tarjeta cuyo borde superior ya pasó la línea de lectura.
+  // Se mide sobre la tarjeta (no sobre el bloque del paso, que ocupa una pantalla entera) para que la gráfica
+  // cambie cuando el texto que la explica ya está a la vista.
+  const secciones = [...document.querySelectorAll(".scrolly")].map(s => ({
+    grafica: graficas[s.dataset.grafica],
+    tarjetas: [...s.querySelectorAll(".paso")].map(p => ({ n: +p.dataset.paso, el: p.querySelector(".tarjeta") })),
+    actual: -1,
+  }));
+  function revisar() {
+    const linea = window.innerHeight * (window.innerWidth <= 820 ? 0.8 : 0.62);
+    secciones.forEach(s => {
+      // -1 = el lector todavía no llega a la primera tarjeta; la gráfica se queda en su estado inicial
+      let activo = -1;
+      s.tarjetas.forEach(t => { if (t.el.getBoundingClientRect().top < linea) activo = t.n; });
+      if (activo !== s.actual && s.grafica) {
+        const desde = s.actual;
+        s.actual = activo;
+        if (activo >= 0 || desde > 0) s.grafica.paso(Math.max(0, activo));
+      }
+    });
+  }
+  let pendiente = false;
+  window.addEventListener("scroll", () => { if (!pendiente) { pendiente = true; requestAnimationFrame(() => { pendiente = false; revisar(); }); } }, { passive: true });
+  window.addEventListener("resize", revisar);
+  revisar();
+}
+
+// ---------- 1. Campo de puntos ----------
+graficas.puntos = (function () {
+  const canvas = document.getElementById("lienzo-puntos");
+  const ctx = canvas.getContext("2d");
+  let estado = 0, previo = 0, mezcla = 1, revelado = reducido ? 1 : 0, geo = null, anim = null;
+  const maxMes = Math.max(...D.notas.map(s => s.length));
+
+  function medir() {
+    const caja = canvas.parentElement.getBoundingClientRect();
+    const angosto = window.innerWidth <= 820;
+    const W = Math.max(280, caja.width), H = Math.max(260, Math.min(angosto ? window.innerHeight * 0.5 : caja.height * 0.9, 760));
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const m = { l: 4, r: 4, t: 46, b: 34 };
+    const pw = W - m.l - m.r, ph = H - m.t - m.b, colW = pw / nMeses;
+    let mejor = { s: 0, k: 1 };
+    for (let k = 1; k <= 6; k++) { const s = Math.min(colW / k, ph / Math.ceil(maxMes / k)); if (s > mejor.s) mejor = { s, k }; }
+    geo = { W, H, m, colW, ...mejor };
+  }
+  function colorPunto(e, i, f) {
+    if (e === 0) return color("--punto");
+    if (e === 1) return color(ERAS[eraDe(i)]);
+    if (e === 2) return f & 4 ? color("--covid") : color("--apagado");
+    if (e === 3) return f & 2 ? color("--baja") : color("--apagado");
+    return f & 1 ? color("--marca") : color("--apagado");
+  }
+  function capa(e, alfa) {
+    const { m, colW, s, k, H } = geo;
+    const lado = Math.max(0.8, s * (s > 3 ? 0.78 : 0.9));
+    const paleta = {};
+    ctx.globalAlpha = alfa;
+    const hasta = Math.floor(revelado * nMeses);
+    const bit = [0, 0, 4, 2, 1][e];
+    for (let i = 0; i < Math.min(nMeses, hasta + 1); i++) {
+      const notas = D.notas[i];
+      // En los estados de resaltado, las notas marcadas se apilan abajo: la columna amarilla se lee como una barra
+      let p = 0;
+      for (const pasada of bit ? [1, 0] : [0]) {
+        for (let j = 0; j < notas.length; j++) {
+          const f = +notas[j];
+          if (bit && ((f & bit) ? 1 : 0) !== pasada) continue;
+          const c = colorPunto(e, i, f);
+          if (ctx.fillStyle !== c) ctx.fillStyle = c;
+          ctx.fillRect(m.l + i * colW + (p % k) * s, H - m.b - (Math.floor(p / k) + 1) * s, lado, lado);
+          p++;
+        }
+      }
+    }
+    ctx.globalAlpha = 1;
+  }
+  function dibujar() {
+    if (!geo) return;
+    const { W, H, m, colW } = geo;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = color("--tinta"); ctx.fillRect(0, 0, W, H);
+    capa(previo, 1);
+    if (mezcla < 1) capa(estado, mezcla); else if (estado !== previo) capa(estado, 1);
+    // Eje de años
+    ctx.font = `500 11px ${color("--sans")}`; ctx.fillStyle = color("--gris"); ctx.textAlign = "center";
+    for (let y = y0; y <= 2026; y++) {
+      const i = mesIdx(`${y}-01`); if (i < 0) continue;
+      if ((y - y0) % (W < 600 ? 4 : 2) === 0) ctx.fillText(String(y), m.l + i * colW + colW * 6, H - 10);
+    }
+    // Transiciones
+    if (estado >= 1) {
+      ctx.strokeStyle = color("--gris"); ctx.setLineDash([3, 4]); ctx.lineWidth = 1;
+      inicios.slice(1).forEach(i => { const x = m.l + i * colW; ctx.beginPath(); ctx.moveTo(x, m.t - 8); ctx.lineTo(x, H - m.b); ctx.stroke(); });
+      ctx.setLineDash([]);
+      ctx.textAlign = "left"; ctx.font = `600 12px ${color("--sans")}`;
+      D.rectorados.forEach((r, j) => {
+        const x0 = m.l + inicios[j] * colW + 4;
+        ctx.fillStyle = estado === 1 ? color(ERAS[j]) : color("--gris");
+        if (estado === 1) ctx.fillStyle = color("--papel");
+        const nombre = W < 600 && j === 3 ? "Cam." : r.nombre;
+        ctx.fillText(nombre, x0, m.t - 14);
+      });
+    }
+  }
+  function animar(hacia) {
+    previo = mezcla < 1 ? estado : estado; estado = hacia; mezcla = 0;
+    if (reducido) { mezcla = 1; previo = estado; dibujar(); return; }
+    cancelAnimationFrame(anim);
+    const t0 = performance.now();
+    function cuadro(t) {
+      mezcla = Math.min(1, (t - t0) / 650);
+      dibujar();
+      if (mezcla < 1) anim = requestAnimationFrame(cuadro); else { previo = estado; dibujar(); }
+    }
+    anim = requestAnimationFrame(cuadro);
+  }
+  let barrido = null;
+  function revelar() {
+    if (revelado >= 1) return;
+    const t0 = performance.now();
+    function cuadro(t) {
+      revelado = Math.min(1, (t - t0) / 1600);
+      dibujar();
+      if (revelado < 1) barrido = requestAnimationFrame(cuadro);
+    }
+    barrido = requestAnimationFrame(cuadro);
+  }
+  // Empieza vacío (solo el eje de años) y el barrido corre una vez, cuando la gráfica entra a la pantalla.
+  // Si el lector llega con el scroll ya más abajo (un enlace, una recarga), se muestra completa sin barrido.
+  medir(); dibujar();
+  new ResizeObserver(() => { medir(); dibujar(); }).observe(canvas.parentElement);
+  if (!reducido) {
+    const visor = new IntersectionObserver(entradas => {
+      if (entradas.some(e => e.isIntersecting)) { visor.disconnect(); revelar(); }
+    }, { threshold: 0.4 });
+    visor.observe(canvas);
+  }
+  return {
+    paso(n) {
+      if (n > 0 && revelado < 1) { cancelAnimationFrame(barrido); revelado = 1; dibujar(); }
+      if (n !== estado) animar(n);
+    },
+    redibujar() { medir(); dibujar(); },
+  };
+})();
+
+// ---------- 2. Palabras ----------
+graficas.palabras = (function () {
+  const FUERA = new Set(["urs", "urn", "norte urn", "sur urs", "unidad", "unidad regional", "campus hermosillo", "dirección apoyo",
+    "director división", "directora división", "dirección vinculación", "hora", "rector", "rectora", "educativa", "educativo", "sede", "estudiantiles", "inclusive", "comenzar"]);
+  const ARREGLA = { "contingencia sanitario": "contingencia sanitaria", "alma mater": "alma máter", "citar": "«se cita»", "horas": "horas", "medioambiente": "medio ambiente" };
+  const caja = document.getElementById("palabras");
+  caja.innerHTML = D.rectorados.map((r, j) => {
+    const lista = D.vocabulario[r.nombre].filter(w => !FUERA.has(w.t)).slice(0, 8);
+    const zmax = Math.max(...lista.map(w => w.z));
+    return `<div class="era${j === 0 ? " activa" : ""}" style="color:var(${ERAS[j]})"><h3>${r.nombre}</h3>${lista.map(w => {
+      const t = ARREGLA[w.t] || w.t;
+      // Tamaño según el z-score, acotado por el largo de la palabra para que no se parta
+      const tam = Math.min(0.95 + (w.z / zmax) * 0.95, 26 / Math.max(...t.split(" ").map(p => p.length)));
+      const marca = t === "estudiantado" || t === "inclusivo" ? ' class="marca"' : "";
+      return `<span style="font-size:clamp(${(tam * 0.7).toFixed(2)}rem, ${(tam * 1.15).toFixed(2)}vw, ${tam.toFixed(2)}rem)"><span${marca}>${t}</span></span>`;
+    }).join("")}</div>`;
+  }).join("");
+  const eras = [...caja.querySelectorAll(".era")];
+  return { paso(n) { eras.forEach((e, j) => e.classList.toggle("activa", j === n)); } };
+})();
+
+// ---------- utilidades SVG ----------
+function tamSVG(svg, altoMax) {
+  const ancho = svg.parentElement.getBoundingClientRect().width;
+  const alto = Math.min(altoMax, Math.max(300, window.innerHeight * 0.66));
+  svg.setAttribute("viewBox", `0 0 ${ancho} ${alto}`);
+  svg.setAttribute("height", alto);
+  return { ancho, alto };
+}
+const DUR = reducido ? 0 : 900;
+
+// ---------- 3. Temas ----------
+graficas.temas = (function () {
+  const svg = d3.select("#svg-temas");
+  let paso = 0;
+  function dibujar() {
+    svg.selectAll("*").remove();
+    const { ancho, alto } = tamSVG(svg.node(), 520);
+    const estrecho = ancho < 720;
+    const m = { l: estrecho ? 8 : 250, r: 50, t: 30, b: 40 };
+    const x = d3.scaleLinear().domain([0.3, 1.5]).range([m.l, ancho - m.r]);
+    const y = d3.scaleBand().domain(D.temas.map(t => t.tema)).range([m.t, alto - m.b]).padding(0.45);
+    svg.append("g").attr("class", "eje").attr("transform", `translate(0,${alto - m.b + 8})`)
+      .call(d3.axisBottom(x).tickValues([0.5, 0.75, 1, 1.25, 1.5]).tickFormat(v => v === 1 ? "promedio" : `${v}×`).tickSize(0))
+      .call(g => g.select(".domain").remove());
+    svg.append("line").attr("x1", x(1)).attr("x2", x(1)).attr("y1", m.t - 10).attr("y2", alto - m.b)
+      .attr("stroke", color("--gris")).attr("stroke-dasharray", "3 4");
+    const fila = svg.selectAll("g.fila").data(D.temas).join("g").attr("class", "fila")
+      .attr("transform", d => `translate(0,${y(d.tema) + y.bandwidth() / 2})`);
+    fila.append("text").attr("x", estrecho ? m.l : m.l - 16).attr("y", estrecho ? -y.bandwidth() * 0.75 : 0).attr("dy", "0.35em")
+      .attr("text-anchor", estrecho ? "start" : "end").style("font-size", "14px").style("fill", color("--papel")).text(d => d.tema);
+    const sube = d => d.valores[3] > d.valores[0];
+    fila.append("line").attr("class", "tramo").attr("x1", d => x(d.valores[0])).attr("x2", d => x(paso ? d.valores[3] : d.valores[0]))
+      .attr("stroke", d => color(sube(d) ? "--sube" : "--baja")).attr("stroke-width", 3).attr("stroke-opacity", 0.45);
+    fila.append("circle").attr("cx", d => x(d.valores[0])).attr("r", 7).attr("fill", color("--punto"));
+    fila.append("circle").attr("class", "fin").attr("cx", d => x(paso ? d.valores[3] : d.valores[0])).attr("r", 9)
+      .attr("fill", d => color(sube(d) ? "--sube" : "--baja")).attr("opacity", paso ? 1 : 0);
+    fila.append("text").attr("class", "valor").attr("dy", "0.35em").style("font-size", "14px").style("font-weight", 700)
+      .attr("x", d => x(d.valores[paso ? 3 : 0]) + (paso && !sube(d) ? -16 : 16)).attr("text-anchor", d => paso && !sube(d) ? "end" : "start")
+      .style("fill", d => paso ? color(sube(d) ? "--sube" : "--baja") : color("--papel-2"))
+      .text(d => (paso ? d.valores[3] : d.valores[0]).toFixed(2) + "×");
+    return { x };
+  }
+  let escala = dibujar().x;
+  new ResizeObserver(() => { escala = dibujar().x; }).observe(document.getElementById("svg-temas").parentElement);
+  return {
+    paso(n) {
+      if (n === paso) return; paso = n;
+      const sube = d => d.valores[3] > d.valores[0];
+      const v = d => d.valores[n ? 3 : 0];
+      svg.selectAll("line.tramo").transition().duration(DUR).attr("x2", d => escala(v(d)));
+      svg.selectAll("circle.fin").transition().duration(DUR).attr("cx", d => escala(v(d))).attr("opacity", n ? 1 : 0);
+      svg.selectAll("text.valor").transition().duration(DUR)
+        .attr("x", d => escala(v(d)) + (n && !sube(d) ? -16 : 16)).attr("text-anchor", d => n && !sube(d) ? "end" : "start")
+        .style("fill", d => n ? color(sube(d) ? "--sube" : "--baja") : color("--papel-2"))
+        .tween("text", function (d) { const i = d3.interpolate(d.valores[n ? 0 : 3], v(d)); return t => { this.textContent = i(t).toFixed(2) + "×"; }; });
+    },
+  };
+})();
+
+// ---------- 4. Verbos (scrub) ----------
+(function verbos() {
+  const svg = d3.select("#svg-verbos");
+  const V = D.verbos, anios = V.anios;
+  let x, y, recorte, ancho, alto;
+  function dibujar() {
+    svg.selectAll("*").remove();
+    ancho = svg.node().parentElement.getBoundingClientRect().width;
+    alto = Math.min(360, Math.max(220, window.innerHeight * 0.4));
+    svg.attr("viewBox", `0 0 ${ancho} ${alto}`).attr("height", alto);
+    const m = { l: 36, r: 20, t: 16, b: 30 };
+    x = d3.scaleLinear().domain(d3.extent(anios)).range([m.l, ancho - m.r]);
+    y = d3.scaleLinear().domain([0, 22]).range([alto - m.b, m.t]);
+    svg.append("g").attr("class", "eje").attr("transform", `translate(0,${alto - m.b})`)
+      .call(d3.axisBottom(x).ticks(ancho < 500 ? 4 : 7).tickFormat(d3.format("d")).tickSize(0)).call(g => g.select(".domain").remove());
+    svg.append("g").attr("class", "eje").attr("transform", `translate(${m.l},0)`)
+      .call(d3.axisLeft(y).tickValues([0, 5, 10, 15, 20]).tickFormat(v => v + "%").tickSize(-(ancho - m.l - m.r)))
+      .call(g => g.select(".domain").remove()).call(g => g.selectAll("line").attr("stroke-opacity", 0.5));
+    recorte = svg.append("clipPath").attr("id", "recorte-verbos").append("rect").attr("x", 0).attr("y", 0).attr("height", alto).attr("width", m.l);
+    const linea = d3.line().x((d, i) => x(anios[i])).y(d => y(d)).curve(d3.curveMonotoneX);
+    const g = svg.append("g").attr("clip-path", "url(#recorte-verbos)");
+    g.append("path").attr("d", linea(V.dijo)).attr("fill", "none").attr("stroke", color("--papel-2")).attr("stroke-width", 3);
+    g.append("path").attr("d", linea(V.destaco)).attr("fill", "none").attr("stroke", color("--sube")).attr("stroke-width", 3);
+    svg.append("circle").attr("id", "pt-dijo").attr("r", 5).attr("fill", color("--papel-2"));
+    svg.append("circle").attr("id", "pt-destaco").attr("r", 5).attr("fill", color("--sube"));
+    actualizar();
+  }
+  const interp = (serie, t) => { const i = Math.floor(t), f = t - i; return i >= serie.length - 1 ? serie[serie.length - 1] : serie[i] * (1 - f) + serie[i + 1] * f; };
+  const seccion = document.getElementById("scrub-verbos");
+  const elAnio = document.getElementById("verbos-anio"), texto = document.getElementById("verbos-texto");
+  const pDijo = document.querySelector("#verbo-dijo .palabra"), pDest = document.querySelector("#verbo-destaco .palabra");
+  const cDijo = document.querySelector("#verbo-dijo .pct"), cDest = document.querySelector("#verbo-destaco .pct");
+  function actualizar() {
+    const r = seccion.getBoundingClientRect();
+    const p = Math.max(0, Math.min(1, -r.top / (r.height - window.innerHeight)));
+    const t = p * (anios.length - 1);
+    const anio = anios[0] + t;
+    const vd = interp(V.dijo, t), vs = interp(V.destaco, t);
+    recorte.attr("width", x(anio));
+    svg.select("#pt-dijo").attr("cx", x(anio)).attr("cy", y(vd));
+    svg.select("#pt-destaco").attr("cx", x(anio)).attr("cy", y(vs));
+    elAnio.textContent = Math.round(anio);
+    const escala = Math.min(1, ancho / 900);
+    pDijo.style.fontSize = (18 + vd * 4.2 * escala) + "px";
+    pDest.style.fontSize = (18 + vs * 4.2 * escala) + "px";
+    cDijo.textContent = `${fmt1(vd)}% de las citas`;
+    cDest.textContent = `${fmt1(vs)}% de las citas`;
+    const val = (serie, a) => serie[anios.indexOf(a)];
+    const rango = serie => `${Math.round(Math.min(...serie.slice(0, 12)))}% a ${Math.round(Math.max(...serie.slice(0, 12)))}%`;
+    texto.textContent = anio < 2024.5 ? `De 2013 a 2024, «dijo» aparece en ${rango(V.dijo)} de las citas; «destacó», en ${rango(V.destaco)}.`
+      : anio < 2025.5 ? `En 2025 las dos líneas casi se tocan: ${fmt1(val(V.dijo, 2025))}% contra ${fmt1(val(V.destaco, 2025))}%.`
+      : `En 2026, «destacó» (${fmt1(val(V.destaco, 2026))}%) supera con claridad a «dijo» (${fmt1(val(V.dijo, 2026))}%).`;
+  }
+  let pendiente = false;
+  window.addEventListener("scroll", () => { if (!pendiente) { pendiente = true; requestAnimationFrame(() => { pendiente = false; actualizar(); }); } }, { passive: true });
+  new ResizeObserver(dibujar).observe(svg.node().parentElement);
+  dibujar();
+})();
+
+// ---------- 5. El giro ----------
+graficas.giro = (function () {
+  const svg = d3.select("#svg-giro");
+  let paso = 0;
+  function dibujar() {
+    svg.selectAll("*").remove();
+    const { ancho, alto } = tamSVG(svg.node(), 560);
+    const m = { l: 10, r: 10, t: 34, b: 30 }, sep = 44;
+    const h = (alto - m.t - m.b - sep) / 2;
+    const fecha = s => new Date(s + "-15");
+    const x = d3.scaleTime().domain([new Date(2013, 0, 1), new Date(2026, 11, 1)]).range([m.l, ancho - m.r]);
+    const y = d3.scaleLinear().domain([-2.5, 8]).range([h, 0]);
+    const bw = Math.max(2, (ancho - m.l - m.r) / 60 * 0.7);
+    const paneles = [
+      { datos: D.cortes.vocab, titulo: "Vocabulario", color: "--baja", top: m.t },
+      { datos: D.cortes.inclusivo, titulo: "Lenguaje inclusivo", color: "--marca", top: m.t + h + sep },
+    ];
+    paneles.forEach((p, k) => {
+      const g = svg.append("g").attr("class", `panel panel-${k}`).attr("transform", `translate(0,${p.top})`);
+      g.append("text").attr("x", m.l).attr("y", -12).style("font-size", "13px").style("font-weight", 700)
+        .style("fill", color("--papel")).text(p.titulo);
+      g.append("line").attr("x1", m.l).attr("x2", ancho - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", color("--linea"));
+      g.append("line").attr("x1", m.l).attr("x2", ancho - m.r).attr("y1", y(3)).attr("y2", y(3)).attr("stroke", color("--gris")).attr("stroke-dasharray", "1 4");
+      g.append("text").attr("x", m.l).attr("y", y(3) - 5).style("font-size", "11px").style("fill", color("--gris")).text("cambio fuera de lo normal");
+      g.selectAll("rect").data(p.datos).join("rect")
+        .attr("x", d => x(fecha(d.t)) - bw / 2).attr("width", bw)
+        .attr("y", d => (k === 1 && paso === 0) ? y(0) : y(Math.max(0, Math.min(8, d.z))))
+        .attr("height", d => (k === 1 && paso === 0) ? 0 : Math.abs(y(Math.max(-2.5, Math.min(8, d.z))) - y(0)))
+        .attr("fill", d => d.z > 3 ? color(p.color) : color("--punto"));
+      D.rectorados.slice(1).forEach(r => {
+        const xx = x(new Date(r.inicio + "T12:00:00"));
+        g.append("line").attr("x1", xx).attr("x2", xx).attr("y1", -4).attr("y2", h).attr("stroke", color("--gris")).attr("stroke-dasharray", "3 4");
+        if (k === 0) g.append("text").attr("x", xx + 4).attr("y", 10).style("font-size", "11px").style("fill", color("--gris")).text(r.nombre);
+      });
+    });
+    svg.append("g").attr("class", "eje").attr("transform", `translate(0,${alto - m.b + 6})`)
+      .call(d3.axisBottom(x).ticks(ancho < 500 ? d3.timeYear.every(4) : d3.timeYear.every(2)).tickFormat(d3.timeFormat("%Y")).tickSize(0))
+      .call(g => g.select(".domain").remove());
+    svg.select(".panel-1").attr("opacity", paso ? 1 : 0.35);
+    return { y };
+  }
+  let esc = dibujar().y;
+  new ResizeObserver(() => { esc = dibujar().y; }).observe(document.getElementById("svg-giro").parentElement);
+  return {
+    paso(n) {
+      if (n === paso) return; paso = n;
+      svg.select(".panel-1").transition().duration(DUR / 2).attr("opacity", n ? 1 : 0.35);
+      svg.select(".panel-1").selectAll("rect").transition().duration(DUR).delay((d, i) => reducido ? 0 : i * 12)
+        .attr("y", d => n ? esc(Math.max(0, Math.min(8, d.z))) : esc(0))
+        .attr("height", d => n ? Math.abs(esc(Math.max(-2.5, Math.min(8, d.z))) - esc(0)) : 0);
+    },
+  };
+})();
+
+// ---------- 6. Firmas ----------
+graficas.firmas = (function () {
+  const svg = d3.select("#svg-firmas");
+  const F = D.firmas;
+  let paso = 0;
+  function dibujar() {
+    svg.selectAll("*").remove();
+    const { ancho, alto } = tamSVG(svg.node(), 520);
+    const etiquetas = ancho > 560;
+    const m = { l: 40, r: etiquetas ? 190 : 20, t: 20, b: 36 };
+    const x = d3.scalePoint().domain(F.periodos).range([m.l, ancho - m.r]);
+    const y = d3.scaleLinear().domain([0, 70]).range([alto - m.b, m.t]);
+    svg.append("g").attr("class", "eje").attr("transform", `translate(0,${alto - m.b + 8})`).call(d3.axisBottom(x).tickSize(0)).call(g => g.select(".domain").remove());
+    svg.append("g").attr("class", "eje").attr("transform", `translate(${m.l},0)`)
+      .call(d3.axisLeft(y).tickValues([0, 20, 40, 60]).tickFormat(v => v + "%").tickSize(-(ancho - m.l - m.r)))
+      .call(g => g.select(".domain").remove()).call(g => g.selectAll("line").attr("stroke-opacity", 0.5));
+    const corte = svg.append("clipPath").attr("id", "recorte-firmas").append("rect").attr("x", 0).attr("y", 0).attr("height", alto)
+      .attr("width", paso ? ancho : x(F.periodos[2]) + 6);
+    const g = svg.append("g").attr("clip-path", "url(#recorte-firmas)");
+    const linea = d3.line().defined(d => d[1] !== null).x(d => x(d[0])).y(d => y(d[1]));
+    F.lineas.forEach((l, k) => {
+      const pts = F.periodos.map((p, i) => [p, l.valores[i]]);
+      g.append("path").attr("d", linea(pts)).attr("fill", "none").attr("stroke", color("--marca")).attr("stroke-width", 2.5).attr("stroke-opacity", 0.85);
+      g.selectAll(null).data(pts.filter(d => d[1] !== null)).join("circle").attr("cx", d => x(d[0])).attr("cy", d => y(d[1])).attr("r", 4.5).attr("fill", color("--marca"));
+    });
+    // Etiquetas al final, separadas para que no se encimen
+    let ultimo = -Infinity;
+    const ordenadas = [...F.lineas].sort((a, b) => a.valores[3] - b.valores[3]);
+    const pos = ordenadas.map(l => { let yy = y(l.valores[3]); return yy; });
+    for (let i = pos.length - 2; i >= 0; i--) if (pos[i] - pos[i + 1] < 17) pos[i] = pos[i + 1] + 17;
+    const lab = svg.append("g").attr("class", "etiquetas").attr("opacity", paso ? 1 : 0);
+    if (etiquetas) ordenadas.forEach((l, i) => {
+      const [n1, n2] = l.firma.split(" ");
+      lab.append("text").attr("x", x(F.periodos[3]) + 12).attr("y", pos[i]).attr("dy", "0.35em").style("font-size", "13px")
+        .style("fill", color("--papel")).text(`${n1} ${n2} · ${l.valores[3]}%`);
+    });
+    return { corte, x, ancho };
+  }
+  let ref = dibujar();
+  new ResizeObserver(() => { ref = dibujar(); }).observe(document.getElementById("svg-firmas").parentElement);
+  return {
+    paso(n) {
+      if (n === paso) return; paso = n;
+      ref.corte.transition().duration(DUR * 1.4).ease(d3.easeCubicInOut).attr("width", n ? ref.ancho : ref.x(F.periodos[2]) + 6);
+      svg.select(".etiquetas").transition().delay(n ? DUR : 0).duration(DUR / 2).attr("opacity", n ? 1 : 0);
+    },
+  };
+})();
+
+document.fonts && document.fonts.ready.then(() => graficas.puntos.redibujar());
+observarPasos();
+</script>
