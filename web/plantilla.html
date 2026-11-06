@@ -277,6 +277,7 @@ svg .eje text { fill: var(--gris); font-size: 12px; }
       <h2>¿Cambia el vocabulario cuando llega un rector?</h2>
       <p>Cada etapa tiene sus palabras. Falta saber si cambian de golpe cuando llega un rector o poco a poco.</p>
       <p>Para cada trimestre medimos cuánto difiere su vocabulario del trimestre anterior: una barra alta es un cambio brusco. Comparamos siempre el mismo número de notas, para que los trimestres con pocas notas no parezcan cambiar más de lo que cambian.</p>
+      <p>La altura de la barra está en desviaciones típicas: 0 es lo que cambia un trimestre típico y 3 o más es un cambio fuera de lo normal. Así el vocabulario y el lenguaje inclusivo se leen en la misma escala.</p>
     </div>
   </section>
 
@@ -781,7 +782,7 @@ graficas.giro = (function () {
   function dibujar() {
     svg.selectAll("*").remove();
     const { ancho, alto } = tamSVG(svg.node(), 560);
-    const m = { l: 10, r: 10, t: 34, b: 30 }, sep = 44;
+    const m = { l: 26, r: 10, t: 34, b: 30 }, sep = 44;
     const h = (alto - m.t - m.b - sep) / 2;
     const fecha = s => new Date(s + "-15");
     const x = d3.scaleTime().domain([new Date(2013, 0, 1), new Date(2026, 11, 1)]).range([m.l, ancho - m.r]);
@@ -798,6 +799,11 @@ graficas.giro = (function () {
       g.append("line").attr("x1", m.l).attr("x2", ancho - m.r).attr("y1", y(0)).attr("y2", y(0)).attr("stroke", color("--linea"));
       g.append("line").attr("x1", m.l).attr("x2", ancho - m.r).attr("y1", y(3)).attr("y2", y(3)).attr("stroke", color("--gris")).attr("stroke-dasharray", "1 4");
       g.append("text").attr("x", m.l).attr("y", y(3) - 5).style("font-size", "11px").style("fill", color("--gris")).text("cambio fuera de lo normal");
+      // Eje y: desviaciones típicas respecto a un trimestre típico (la mediana)
+      [0, 3, 6].forEach(v => g.append("text").attr("x", m.l - 8).attr("y", y(v)).attr("dy", "0.32em").attr("text-anchor", "end")
+        .style("font-size", "11px").style("fill", color("--gris")).text(v));
+      if (k === 0) g.append("text").attr("x", ancho - m.r).attr("y", -12).attr("text-anchor", "end")
+        .style("font-size", "11px").style("fill", color("--gris")).text("desviaciones típicas");
       g.selectAll("rect").data(p.datos).join("rect")
         .attr("x", d => x(fecha(d.t)) - bw / 2).attr("width", bw)
         .attr("y", d => (k === 1 && paso === 0) ? y(0) : y(Math.max(0, Math.min(8, d.z))))
